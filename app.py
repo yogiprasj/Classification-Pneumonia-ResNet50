@@ -42,8 +42,35 @@ html, body, [data-testid="stAppViewContainer"] {
     color: var(--text-dark);
 }
 
-[data-testid="stHeader"] { display: none !important; }
-[data-testid="stDecoration"] { display: none !important; }
+
+[data-testid="stHeader"] {
+    background-color: rgba(0,0,0,0) !important;
+    height: 0px !important;
+}
+[data-testid="stAppDeployButton"] {
+    display: none !important;
+}
+[data-testid="stHeader"] > div:first-child > button {
+    position: fixed !important;
+    top: 25px !important;
+    left: 15px !important;
+    z-index: 999999;
+    
+    background-color: #1C2B35 !important; 
+    color: #DFF1F1 !important;
+    
+    border: 2px solid #BBD5DA !important; 
+    border-radius: 8px !important;
+    width: 42px !important;
+    height: 38px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    transition: all 0.3s ease;
+}
+[data-testid="stHeader"] > div:first-child > button:hover {
+    background-color: #2e5060 !important;
+    color: #ffffff !important;
+    transform: scale(1.05); /* Sedikit membesar saat di-hover */
+}
 #MainMenu { display: none !important; }
 footer { display: none !important; }
 
@@ -326,28 +353,23 @@ img_base64 = get_base64_image("logo.png")
 
 # ── SIDEBAR ───────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown(
-        f"""
+    st.markdown(f"""
         <div style="text-align:center; padding: 1.4rem 0 .6rem;">
-            <img src="data:image/png;base64,{img_base64}"
-                 style="width:100px; border-radius:50%;
-                        border:3px solid rgba(187,213,218,.4);
-                        box-shadow:0 4px 18px rgba(0,0,0,.3);">
-            <h3 style="margin:.85rem 0 .2rem; font-family:'DM Serif Display',serif;
-                       font-size:1.1rem; font-weight:400; color:#DFF1F1;">
+            <img src="data:image/png;base64,{img_base64}" 
+                 style="width:100px;"> <!-- Bagian border, radius, dan shadow dihapus -->
+            <h3 style="margin:.85rem 0 .2rem; font-family:'DM Serif Display',serif; 
+                        font-size:1.1rem; font-weight:400; color:#DFF1F1;">
                 Muhammad Yogi Prasojo
             </h3>
             <p style="margin:.1rem 0; font-size:.82rem; color:#BBD5DA;">NPM: 11122016</p>
             <p style="margin:.1rem 0; font-size:.82rem; color:#BBD5DA;">Sistem Informasi</p>
             <p style="margin:.1rem 0; font-size:.82rem; color:#BBD5DA;">Universitas Gunadarma</p>
         </div>
-        """,
-        unsafe_allow_html=True
-    )
+    """, unsafe_allow_html=True)
 
     st.write("---")
 
-    st.markdown("## 📖 Cara Penggunaan")
+    st.markdown("## Cara Penggunaan")
     st.info(
         "1. Upload foto Chest X-Ray (Rontgen Paru)\n"
         "2. Format: JPG / PNG / JPEG\n"
